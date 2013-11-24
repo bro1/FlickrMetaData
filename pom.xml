@@ -1,0 +1,124 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>bro1.tools</groupId>
+	<artifactId>flickrmeta</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Flickr meta</name>
+	<url>http://linasj.wordpress.com</url>
+	<description>Add meta data from Flickr's XML to image IPIC data</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+
+<dependency>
+	<groupId>org.scala-lang</groupId>
+	<artifactId>scala-library</artifactId>
+	<version>2.9.3</version>
+</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>12.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jdom</groupId>
+			<artifactId>jdom2</artifactId>
+			<version>2.0.4</version>
+			<scope>compile</scope>
+		</dependency>
+
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-imaging</artifactId>		
+		<version>1.0-SNAPSHOT</version>		
+	</dependency>
+ 
+	</dependencies>
+
+	<build>
+	    <sourceDirectory>src/main/scala</sourceDirectory>
+		<testSourceDirectory>src/test/scala</testSourceDirectory>
+	
+		<plugins>
+		
+			<plugin>
+	
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
+				<version>3.1.3</version>				
+				
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>								
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.1.1</version>
+				<configuration>
+					<programs>
+						<program>
+							<mainClass>bro1.mine.Mine</mainClass>
+							<name>Mine</name>
+						</program>
+						<program>
+							<mainClass>bro1.mine.preview.TopicPatternPreviewer</mainClass>
+							<name>minepreview</name>
+						</program>
+					</programs>
+					<binFileExtensions>
+						<unix>.sh</unix>
+					</binFileExtensions>
+					<copyConfigurationDirectory>false</copyConfigurationDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>buildshfiles</id>
+						<phase>install</phase>
+						<goals>
+							<goal>assemble</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<organization>
+		<name>Linas Jakucionis</name>		
+	</organization>
+</project>
